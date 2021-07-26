@@ -1,0 +1,2 @@
+sequence: sequence.c
+	gcc sequence.c -o sequence.x

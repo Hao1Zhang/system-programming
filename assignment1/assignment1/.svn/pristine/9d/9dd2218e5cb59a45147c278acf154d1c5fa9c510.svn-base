@@ -1,0 +1,41 @@
+#!/bin/bash
+#this code is for using the pattern created before to do multiple character shifting works
+#get output from creat_pattern
+num_of_arg=$#
+if [[ $num_of_arg == 2 ]];
+then
+    pattern=$(./create_pattern $1 $2)
+elif [ $num_of_arg == 3 ];
+then
+    pattern=$(./create_pattern $1 $2 $3)
+fi
+
+#if find -u up=1, or up=0
+up=0
+for arg
+do
+#find if have -u
+    if [[ $arg = "-u" ]];then
+        up=1
+    fi
+done
+
+#keep reading input until find eof or EOF
+while read input
+    do
+        if [ $up == 0 ];then
+            if [[ $input = "eof" ]];then
+                break #end the loop
+            fi
+            #if input is not eof continue
+            echo $input | tr '[a-z]' $pattern
+        elif [ $up == 1 ];then
+            if [[ $input = "EOF" ]];then
+                break #end the loop
+            fi
+            #if input is not EOF continue
+            echo $input | tr '[A-Z]' $pattern
+        fi
+done
+
+

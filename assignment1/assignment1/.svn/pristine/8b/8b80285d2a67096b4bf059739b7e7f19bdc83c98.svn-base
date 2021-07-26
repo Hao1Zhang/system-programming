@@ -1,0 +1,8 @@
+#!/bin/bash
+#this code is to shift every line in a text file 25 times (shift from 1 to 25)
+for (( i = 1; i < 26; i++ )); do
+    echo "Shift $i"
+    #get output from creat_pattern
+    pattern=$(./create_pattern -u -n $i)
+    cat<$1 | tr '[A-Z]' $pattern; #read file one by one line and use tr to convert
+done

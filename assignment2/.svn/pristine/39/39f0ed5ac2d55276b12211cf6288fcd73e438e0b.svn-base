@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main(){
+    char line[256];
+    char str[256000];
+    // int init = 0;
+    int count =0;
+    // system("touch a.bash");
+    // system("chmod +x a.bash");
+    // FILE *fptr;
+    // fptr = fopen("a.bash","w");
+    // fprintf(fptr,"#!/bin/bash");
+    // fprintf(fptr,"\n");
+     while (fgets(line, 256, stdin) != NULL){
+        //  if (count != 0){
+        //      strcat(str, "|");
+        //  }
+        if (line[0] == '\n'){
+        line[0] = '\0';
+         }
+    if (line[strlen(line)-1] == '\n'){
+        line[strlen(line)-1] = '|';
+
+    }
+        // fprintf(stderr,"%s",line);
+         strcat(str,line);
+
+
+
+
+
+
+        count++;
+      }
+      system(str);
+    //   fprintf(stderr,"%s",str);
+
+
+    //   system("./a.bash");
+    //   system("rm a.bash");
+
+
+    //  for (i = 0; i<=count ; i++){
+
+    //  }
+    //  fprintf(stderr,"%s",str);
+
+}

@@ -1,0 +1,43 @@
+#!/bin/bash
+#this code is for creating a pattern using in tr function as the second argument
+
+up=0 #not in upper case at beginning
+shift_num=0 #not shift numbers at beginning
+
+#store all the arguments in an array for future access
+for arg
+do
+#find if have -u
+    if [[ $arg = "-u" ]];then
+        up=1
+    fi
+done
+
+#find if have -n then find the next one is shift num
+i=1
+for arg
+do
+#find if have -u
+    i=$((i+1))
+    if [[ $arg = "-n" ]];then
+        shift_num=${!i}
+    fi
+done
+
+#for displaying
+chars=(a b c d e f g h i j k l m n o p q r s t u v w x y z)
+
+#shift numbers
+#if shift 26*n place it should remain the same as before
+if [ $((shift_num%26)) != 0 ];then
+    string="[${chars[$shift_num]}-za-${chars[$shift_num-1]}]"
+else
+    string="[a-z]"
+fi
+
+#if have -u convert to upper case
+if [ $up == 1 ];then
+    string=${string^^}
+fi
+echo $string
+
